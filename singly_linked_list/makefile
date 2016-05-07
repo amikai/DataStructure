@@ -10,7 +10,7 @@ main: $(OBJECTS)
 
 .PHONY: clean
 clean:
-	@rm main *.o
+	@rm main $(OBJECTS)
 
 .PHONY: run
 run: #atom run
