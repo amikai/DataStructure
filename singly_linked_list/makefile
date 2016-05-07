@@ -5,11 +5,13 @@ CC = gcc
 main: $(OBJECTS)
 	$(CC) -o main $(OBJECTS)
 
-main.o: LinkedList.h
-LinkedList.o: LinkedList.h
+%.o: %.c %.h
+	$(CC) -c $<
 
+.PHONY: clean
 clean:
-	rm main $(OBJECTS)
+	@rm main *.o
 
-run: main
-	./main
+.PHONY: run
+run: #atom run
+	./main && make clean
