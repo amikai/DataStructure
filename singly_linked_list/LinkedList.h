@@ -10,7 +10,7 @@
 #define FALSE 0
 
 typedef struct node{
-    int value;
+    int key;
     struct node *link;
 }node;
 
@@ -22,11 +22,10 @@ int top_back(node **head); //return back item
 void pop_back(node **head); //remove back item
 BOOL find(node **head, int key); // is key in list?
 void erase(node **head, int key); // remove key from list
-BOOL empty(node **head); //is list empty?
+BOOL is_empty(node **head); //is list empty?
+node *find_node_by_key(node **head, int key);
 void add_before(node **head, node ** target, int key); //add key before target node
 void add_after(node **head, node **target, int key); //add key after target node
-
-void printHello();
-
+void print_list(node **head);
 
 #endif
