@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 
-
 int main(){
 
     node *head = NULL;

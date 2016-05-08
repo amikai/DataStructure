@@ -91,7 +91,7 @@ BOOL find(node **head, int key){
     return FALSE;
 }
 void erase(node **head, int key){
-    
+
 }
 BOOL is_empty(node **head){
     if(*head)
@@ -99,9 +99,45 @@ BOOL is_empty(node **head){
     return TRUE;
 }
 
-node *find_node_by_key(node **head, int key){ return NULL;}
-void add_before(node **head, node ** target, int key){}
-void add_after(node **head, node **target, int key){}
+node *find_node_by_key(node **head, int key){
+    node *visit = NULL;
+    for(visit = *head ; visit != NULL && visit->key != key ; visit = visit->next );
+    return visit;
+}
+void add_before(node **head, node **target, int key){
+    node *new_node = (node *)malloc(sizeof(node));
+    new_node->key = key ;
+
+    if((*head) == (*target)){
+        push_front(head, key);
+        return ;
+    }
+
+    new_node->next = (*target);
+    new_node->prev = (*target)->prev;
+
+    (*target)->prev = new_node;
+
+    new_node->prev->next = new_node;
+
+}
+void add_after(node **head, node **target, int key){
+
+    node *new_node = (node *)malloc(sizeof(node));
+    new_node->key = key;
+
+    if(!(*target)->next){ //last node
+        push_back(head, key);
+        return ;
+    }
+
+    new_node->next = (*target)->next;
+    new_node->prev = (*target);
+
+    (*target)->next = new_node;
+
+    new_node->next->prev = new_node;
+}
 void print_list(node **head){
     node *visit = NULL;
     for(visit = (*head) ; visit != NULL ; visit = visit->next){
