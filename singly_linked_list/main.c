@@ -7,8 +7,8 @@ int main(){
 
     node *head = NULL;
     push_back(&head, 1);
-    push_back(&head, 2);
-    push_back(&head, 3);
+    pop_front(&head);
+
 
     print_list(&head);
 

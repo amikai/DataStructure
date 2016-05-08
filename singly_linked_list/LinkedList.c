@@ -4,13 +4,10 @@ void push_front(node **head, int key){
 
     node *new_node = (node *)malloc(sizeof(node));
     new_node->key = key;
-    if(is_empty(head)){
-        new_node->link = NULL;
-        (*head) = new_node;
-    }else{
-        new_node->link = (*head);
-        (*head) = new_node;
-    }
+
+    new_node->link = (*head);
+    (*head) = new_node;
+
 }
 int top_front(node **head){
     if(is_empty(head)){
@@ -70,6 +67,7 @@ void pop_back(node **head){
     if(!(*head)->link){ //only one node
         free(*head);
         *head = NULL;
+        return ;
     }
 
     node *prev = NULL;
@@ -80,6 +78,7 @@ void pop_back(node **head){
 
 }
 BOOL find(node **head, int key){
+    
     node *visit = NULL;
     for(visit = (*head) ; visit != NULL ; visit = visit->link)
         if(visit->key == key)
@@ -144,7 +143,7 @@ void add_before(node **head, node **target, int key){
 
 }
 void add_after(node **head, node **target, int key){
-    
+
     node *new_node = (node *)malloc(sizeof(node));
     new_node->key = key;
     new_node->link = (*target)->link;
