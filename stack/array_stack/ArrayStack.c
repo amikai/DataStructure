@@ -5,17 +5,17 @@ stack *creat_stack(int max_size){
     stack *s = (stack *)malloc(sizeof(stack));
     s->num_elements = 0;
     *(int *)(&s->MAX_STACK_SIZE) = max_size; // initial struc const member
-    s->element = (int *)calloc(max_size,0);
+    s->datas = (int *)calloc(max_size,0);
 
     return s;
 }
 
-void push(stack *s,int element){
+void push(stack *s,int data){
     if(is_full(s)){
         fprintf(stderr, "the stack is full\n");
         return ;
     }
-    s->element[(s->num_elements)++] = element;
+    s->datas[(s->num_elements)++] = data;
 }
 
 int top(stack *s){
@@ -24,7 +24,7 @@ int top(stack *s){
         fprintf(stderr, "the stack is empty\n");
         return -1;
     }
-    return s->element[s->num_elements - 1];
+    return s->datas[s->num_elements - 1];
 }
 
 int pop(stack *s){
@@ -33,7 +33,7 @@ int pop(stack *s){
         return -1;
     }
 
-    return s->element[--(s->num_elements)];
+    return s->datas[--(s->num_elements)];
 }
 
 BOOL is_empty(stack *s){
@@ -50,7 +50,7 @@ void print_stack(stack *s){
     int i = 0;
     printf("top");
     for(i = s->num_elements - 1  ; i >= 0 ; i--){
-        printf("->%d",s->element[i]);
+        printf("->%d",s->datas[i]);
     }
     printf("\n");
 }

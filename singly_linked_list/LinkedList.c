@@ -5,6 +5,11 @@ void push_front(node **head, int key){
     node *new_node = (node *)malloc(sizeof(node));
     new_node->key = key;
 
+    if(is_empty(head)){
+        new_node->link = NULL;
+        return ;
+    }
+
     new_node->link = (*head);
     (*head) = new_node;
 
@@ -78,7 +83,7 @@ void pop_back(node **head){
 
 }
 BOOL find(node **head, int key){
-    
+
     node *visit = NULL;
     for(visit = (*head) ; visit != NULL ; visit = visit->link)
         if(visit->key == key)

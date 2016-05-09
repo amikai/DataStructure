@@ -9,12 +9,15 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+
+#ifndef BOOL
 #define BOOL int
 #define TRUE 1
 #define FALSE 0
+#endif
 
 typedef struct{
-    int *element;
+    int *datas;
     int num_elements;
     const int MAX_STACK_SIZE;
 }stack;
