@@ -1,4 +1,4 @@
-ddef root(tree):
+def root(tree):
     return tree[0]
 
 def branches(tree):
@@ -7,7 +7,8 @@ def branches(tree):
 def is_leaf(tree):
     return not branches(tree)
 
-
+def degree(tree):
+    return len(branches(tree))
 
 def is_tree(tree):
     if type(tree) != list or len(tree) < 1:
@@ -21,6 +22,25 @@ def tree(root , branches = []):
     for branch in branches:
         assert is_tree(branch), 'branches must be tree'
     return [root] + list(branches)
+
+
+def is_equal(tree_a, tree_b):
+
+    if(root(tree_a) != root(tree_b)):
+        return False
+
+    tree_a_branches = branches(tree_a)
+    tree_b_branches = branches(tree_b)
+    number_of_tree_a_branches = len(branches(tree_a_branches))
+    number_of_tree_b_branches = len(branches(tree_b_branches))
+
+    if number_of_tree_a_branches != number_of_tree_b_branches:
+        return False
+
+    for i in range(1,number_of_tree_a_branches + 1): # index 0 is root of tree
+        if(not is_equal(tree_a_branches[i], tree_b_branches[i])):
+            return False
+    return True
 
 def count_leaves(tree):
     assert is_tree(tree)
