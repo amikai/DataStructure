@@ -48,7 +48,7 @@ class BinaryTree:
         return helper(tree, None)
 
 
-class BT_operation:
+class BT_Operation:
 
 
     @classmethod
